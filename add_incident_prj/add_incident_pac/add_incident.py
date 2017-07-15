@@ -6,6 +6,9 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
+from calendar import datetime
+from group import Group
+
 
 class TestAddIncident(unittest.TestCase):
     def setUp(self):
@@ -17,24 +20,43 @@ class TestAddIncident(unittest.TestCase):
         self.verificationErrors = []
         self.accept_next_alert = True
     
+    
     def test_add_incident(self):
         driver = self.driver
-        driver.get("https://docit-preprod.stopit.fm/")
-        driver.find_element_by_id("password").clear()
-        driver.find_element_by_id("password").send_keys("Stopit1234")
+        self.login(driver, Group("https://docit-preprod.stopit.fm/", "tj2@stopit.fm", "Stopit1234"))
+        #print("login " + str(datetime.datetime.now()))
+        print('login:%s' % datetime.datetime.now())
+        #print(date.today())
+        self.cancelIncident(driver, "123", "123")
+        print("cancel")
+        self.logout(driver)    
+        print("test completed")
+    
+
+    def login(self, driver, group):
+        driver.get(group.myUrl)
         driver.find_element_by_id("email").clear()
-        driver.find_element_by_id("email").send_keys("tj2@stopit.fm")
+        driver.find_element_by_id("email").send_keys(group.myEmail)
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys(group.myPassword)
         driver.find_element_by_id("loginButton").click()
+
+
+    def cancelIncident(self, driver, note1, note2):
         driver.find_element_by_css_selector("div.icon.add_incident").click()
         driver.find_element_by_id("notes").clear()
-        driver.find_element_by_id("notes").send_keys("123")
+        driver.find_element_by_id("notes").send_keys(note1)
         driver.find_element_by_name("notes").clear()
-        driver.find_element_by_name("notes").send_keys("123")
+        driver.find_element_by_name("notes").send_keys(note2)
         driver.find_element_by_id("cancelNewIncident").click()
+
+
+    def logout(self, driver):
         driver.find_element_by_css_selector("div.icon.home").click()
         driver.find_element_by_css_selector("div.down_arrow").click()
         driver.find_element_by_xpath("//li[@onclick=\"javascript:location.href='/logout/';\"]").click()
-       
+
+      
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
