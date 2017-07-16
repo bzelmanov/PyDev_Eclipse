@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>add_incident_prj</name>
+	<name>New_Add_incident</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>env</name>
+			<type>2</type>
+			<location>C:/tests/Python/PyDev_Eclipse/env</location>
+		</link>
+	</linkedResources>
 </projectDescription>
