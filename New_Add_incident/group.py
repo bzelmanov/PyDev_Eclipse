@@ -3,12 +3,20 @@ Created on Jul 15, 2017
 
 @author: bok
 '''
-class Group:
+class myGroup:
     
     def __init__(self, myUrl, myEmail, myPassword):
         self.myUrl = myUrl
         self.myEmail = myEmail
         self.myPassword = myPassword
+        
+
+class Incident:
+            
+    def __init__(self, note1, note2):    
+        self.note1 = note1
+        self.note2 = note2
+        
         
         
         
