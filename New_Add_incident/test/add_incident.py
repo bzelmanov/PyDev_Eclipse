@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from calendar import datetime
-from group import myGroup
-from group import myIncident
-from application import myApplication
+from model.group import myGroup
+from model.group import myIncident
+from fixture.application import myApplication
 import pytest
 
 
