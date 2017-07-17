@@ -11,7 +11,7 @@ class myGroup:
         self.myPassword = myPassword
         
 
-class Incident:
+class myIncident:
             
     def __init__(self, note1, note2):    
         self.note1 = note1
