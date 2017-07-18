@@ -15,6 +15,7 @@ class myApplication:
     def login(self, myGroup):
         driver = self.driver
         driver.get(myGroup.myUrl)
+        time.sleep(2)
         driver.find_element_by_id("email").clear()
         driver.find_element_by_id("email").send_keys(myGroup.myEmail)
         driver.find_element_by_id("password").clear()
