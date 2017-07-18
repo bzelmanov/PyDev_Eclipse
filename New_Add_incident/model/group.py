@@ -18,5 +18,9 @@ class myIncident:
         self.note2 = note2
         
         
-        
+class myIncident2:
+            
+    def __init__(self, note1, note2):    
+        self.note1 = note1
+        self.note2 = note2      
         

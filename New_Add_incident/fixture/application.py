@@ -1,6 +1,8 @@
+from model.group import myIncident2
 __init__ = 'bok'
 
 from selenium import webdriver
+import time
 
 class myApplication:
     
@@ -36,6 +38,23 @@ class myApplication:
         driver.find_element_by_css_selector("div.down_arrow").click()
         driver.find_element_by_xpath("//li[@onclick=\"javascript:location.href='/logout/';\"]").click()
         
+        
+    def test_add_incident2(self, myIncident2):
+        driver = self.driver
+        driver.find_element_by_css_selector("div.icon.add_incident").click()
+        driver.find_element_by_id("notes").clear()
+        driver.find_element_by_id("notes").send_keys(myIncident2.note1)
+        driver.find_element_by_name("notes").clear()
+        driver.find_element_by_name("notes").send_keys(myIncident2.note1)
+        time.sleep(2)
+        driver.find_element_by_xpath("//div[2]/button").click()
+        time.sleep(2)
+        driver.find_element_by_id("incident_tags_2211").click()
+        time.sleep(2)
+        driver.find_element_by_xpath("//button[@onclick='sendSelectedItems(); return false;']").click()
+        time.sleep(2)
+        driver.find_element_by_id("cancelNewIncident").click()
+            
         
     def destroy(self):
         self.driver.quit()
